@@ -1,16 +1,28 @@
-import { store } from '../../store/store.js'
+import { store, updateStore } from '../../store/store.js';
+import { getImageByRover } from '../../services/api.js';
 
 // components
 import { Greeting } from './Greeting.js'
 import { ImageOfTheDay } from './ImageOfTheDay.js'
 
+export function didRender(){
+    const selectRoverElem = document.getElementById('rover_select');
+    selectRoverElem.onchange = function onRoverChange (e) {
+        const roverName = e.target.value;
+        getImageByRover(roverName)
+    }
+}
+
 // create content
 export const App = (state) => {
-    let { rovers, apod } = state
-    console.log(rovers);
-    console.log(apod)
-    console.log(state);
+    let { rovers, apod } = state;
+
     return `
+        <section>
+            <select id='rover_select'>
+                ${rovers.map(roverName => `<option value=${roverName}>${roverName}</option>`)}
+            </select>
+        </section>
         <header></header>
         <main>
             ${Greeting(store.user.name)}

@@ -1,10 +1,11 @@
 import { store } from './store/store.js'
 
 // components
-import { App } from './assets/components/App.js'
+import { App, didRender } from './assets/components/App.js'
 export const root = document.getElementById('root');
 export const render = async (root, state) => {
-    root.innerHTML = App(state)
+    root.innerHTML = App(state);
+    didRender();
 }
 
 
