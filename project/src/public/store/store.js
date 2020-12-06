@@ -1,13 +1,20 @@
 import { render } from '../client.js'
 
-export let store = {
+let store = {
     user: { name: "Student" },
     apod: '',
     rovers: ['Curiosity', 'Opportunity', 'Spirit'],
+    roverImages: {
+        curiosity: [],
+        opportunity: [],
+        spirit: []
+    }
 }
+
+export const getStore = () => store;
 
 export const updateStore = (store, newState) => {
     // make it immutable
     store = Object.assign({}, store, newState); 
-    render(root, store)
+    render(root, store);
 }

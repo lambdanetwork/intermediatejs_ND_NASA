@@ -1,4 +1,4 @@
-import { store, updateStore } from '../../store/store.js';
+import { getStore, updateStore } from '../../store/store.js';
 import { getImagesByRovername } from '../../services/api.js';
 import { useEffect } from '../../utils/useEffect.js';
 
@@ -9,7 +9,8 @@ import { ImageOfTheDay } from './ImageOfTheDay.js'
 // create content
 export const App = (state) => {
     let { rovers, apod } = state;
-
+    const store = getStore();
+    
     useEffect(() => {
         // didMount
         const selectRoverElem = document.getElementById('rover_select');
@@ -17,10 +18,10 @@ export const App = (state) => {
             const roverName = e.target.value;
             getImagesByRovername(roverName)
         }
-    })
+    });
+    
     return `
         <section>
-
             <select id='rover_select'>
                 ${rovers.map(roverName => `<option value=${roverName}>${roverName}</option>`)}
             </select>
