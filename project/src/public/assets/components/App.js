@@ -1,24 +1,26 @@
 import { store, updateStore } from '../../store/store.js';
 import { getImagesByRovername } from '../../services/api.js';
+import { useEffect } from '../../utils/useEffect.js';
 
 // components
 import { Greeting } from './Greeting.js'
 import { ImageOfTheDay } from './ImageOfTheDay.js'
 
-export function didRender(){
-    const selectRoverElem = document.getElementById('rover_select');
-    selectRoverElem.onchange = function onRoverChange (e) {
-        const roverName = e.target.value;
-        getImagesByRovername(roverName)
-    }
-}
-
 // create content
 export const App = (state) => {
     let { rovers, apod } = state;
 
+    useEffect(() => {
+        // didMount
+        const selectRoverElem = document.getElementById('rover_select');
+        selectRoverElem.onchange = function onRoverChange (e) {
+            const roverName = e.target.value;
+            getImagesByRovername(roverName)
+        }
+    })
     return `
         <section>
+
             <select id='rover_select'>
                 ${rovers.map(roverName => `<option value=${roverName}>${roverName}</option>`)}
             </select>
