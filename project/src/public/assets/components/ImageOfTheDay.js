@@ -1,21 +1,25 @@
 import { getImageOfTheDay } from '../../services/api.js';
-import { store } from '../../store/store.js';
+import { getStore } from '../../store/store.js';
+import { useEffect } from '../../utils/useEffect.js';
 
 
 // Example of a pure function that renders infomation requested from the backend
 export const ImageOfTheDay = (apod) => {
 
-    // If image does not already exist, or it is not from today -- request it again
-    const today = new Date()
-    const photodate = new Date(apod.date)
-    console.log(photodate.getDate(), today.getDate());
+    useEffect(() => {
+        // mimic didmount, only run once
+        // If image does not already exist, or it is not from today -- request it again
+        const today = new Date()
+        const photodate = new Date(apod.date)
+        console.log(photodate.getDate(), today.getDate());
+    
+        console.log(photodate.getDate() === today.getDate());
+        if (!apod || apod.date === today.getDate() ) {
+            return getImageOfTheDay(getStore())
+        }
+    })
 
-    console.log(photodate.getDate() === today.getDate());
-    if (!apod || apod.date === today.getDate() ) {
-        return getImageOfTheDay(store)
-    }
-
-
+    if(!apod) return null
 
     // check if the photo of the day is actually type video!
     if (apod.media_type === "video") {
@@ -26,7 +30,8 @@ export const ImageOfTheDay = (apod) => {
         `)
     } else {
         return (`
-            <img src="${apod.image.url}" height="350px" width="100%" />
+        <p>See today's featured image</p>
+        <img src="${apod.image.url}" height="350px" width="100%" />
             <p>${apod.image.explanation}</p>
         `)
     }
