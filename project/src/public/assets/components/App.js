@@ -1,5 +1,5 @@
 import { store, updateStore } from '../../store/store.js';
-import { getImageByRover } from '../../services/api.js';
+import { getImagesByRovername } from '../../services/api.js';
 
 // components
 import { Greeting } from './Greeting.js'
@@ -9,7 +9,7 @@ export function didRender(){
     const selectRoverElem = document.getElementById('rover_select');
     selectRoverElem.onchange = function onRoverChange (e) {
         const roverName = e.target.value;
-        getImageByRover(roverName)
+        getImagesByRovername(roverName)
     }
 }
 
