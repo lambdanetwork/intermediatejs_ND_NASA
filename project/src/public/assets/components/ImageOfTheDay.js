@@ -6,7 +6,7 @@ import { useEffect } from '../../utils/useEffect.js';
 // Example of a pure function that renders infomation requested from the backend
 export const ImageOfTheDay = (apod) => {
 
-    useEffect(() => {
+    useEffect('ImageOfTheDay', () => {
         // mimic didmount, only run once
         // If image does not already exist, or it is not from today -- request it again
         const today = new Date()
@@ -17,7 +17,7 @@ export const ImageOfTheDay = (apod) => {
         if (!apod || apod.date === today.getDate() ) {
             return getImageOfTheDay(getStore())
         }
-    })
+    }, [])
 
     if(!apod) return null
 

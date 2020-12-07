@@ -11,14 +11,13 @@ export const App = (state) => {
     let { rovers, apod } = state;
     const store = getStore();
     
-    useEffect(() => {
-        // didMount
+    useEffect('App', () => {
         const selectRoverElem = document.getElementById('rover_select');
         selectRoverElem.onchange = function onRoverChange (e) {
             const roverName = e.target.value;
             getImagesByRovername(roverName)
         }
-    });
+    }, []);
     
     return `
         <section>
