@@ -27,14 +27,13 @@
     flex: 1;
     overflow-y: scroll;
     display: flex;
-    flex-flow: row wrap;
     align-items:flex-start;
     align-content:flex-start;
     flex-wrap: wrap;
     margin: 0 auto;
 }
 
-.tile-container .tile{
+.tile-container .tile {
     max-width: 170px;
     margin: 4px;
     align-self:stretch;

@@ -33,12 +33,28 @@ body {
 }
 
 /* -------------------  TABLET  --------------------- */
-@media (min-width: 768px) {
-  /* use mobile */
+/* make sure tile-container is always in center */
+@media (min-width: 0px) {
+  .tile-container {
+    max-width: 356px;
+  }
+}
+@media (min-width: 572px) {
+  .tile-container {
+    max-width: 534px;
+  }
 }
 
-@media (min-width: 926px) {
+@media (min-width: 752px) {
+  .tile-container {
+    max-width: 712px;
+  }
+}
 
+@media (min-width: 930px) {
+  .tile-container {
+    max-width: 890px;
+  }
 }
 
 /* -------------------  DESKTOP  -------------------- */
@@ -50,4 +66,5 @@ body {
     min-width: 1024px;
     max-width: 1024px;
   }
+  
 }
