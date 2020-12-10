@@ -5,20 +5,15 @@ body {
   flex-direction: column;
   font-family: Arial;
   min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-header {
-  /* header styles */
-}
 
-main {
-  flex: 1;
+.main {
   padding: 20px;
+  flex: 1;
 }
 
-footer {
-  /* footer styles */
-}
 
 /* -------------------  TABLET  --------------------- */
 @media (min-width: 768px) {
