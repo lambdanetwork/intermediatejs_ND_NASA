@@ -10,6 +10,7 @@ You are going to create a Mars rover dashboard that consumes the NASA API. Your 
     1. git clone https://github.com/lambdanetwork/intermediatejs_ND_NASA
     2. npm install
     3. npm start
+    4. go to http://localhost:3000
 ```
 
 ### Design
