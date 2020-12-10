@@ -31,14 +31,19 @@ app.get('/rover', async (req, res) => {
         if(!roverName) {
             return res.status(400).end();
         }
-        const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/${roverName}/photos?sol=1000&camera=fhaz&api_key=${process.env.API_KEY}`
-        console.log(roverName)
-        console.log(url)
-        let image = await fetch(url)
-            .then(res => res.json())
-        res.send({ image })
+        const url = `https://api.nasa.gov/mars-photos/api/v1/manifests/${roverName}?api_key=${process.env.API_KEY}`;
+        const imageUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/${roverName}/photos?sol=0&camera=fhaz&api_key=${process.env.API_KEY}`
+        const result = await Promise.all(
+            [   fetch(url).then(res => res.json()), 
+                fetch(imageUrl).then(res => res.json())
+            ]
+        )
+        const [roverDetail, images] = result;
+        roverDetail.photo_manifest.photos = images.photos;
+        res.json(roverDetail);
     } catch (err) {
         console.log('error:', err);
+        res.status(500).end();
     }
 })
 
