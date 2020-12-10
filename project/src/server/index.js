@@ -26,7 +26,7 @@ app.get('/apod', async (req, res) => {
     }
 })
 
-const getImageUrl = (roverName, sol) =>`https://api.nasa.gov/mars-photos/api/v1/rovers/${roverName}/photos?sol=${sol}&camera=fhaz&api_key=${process.env.API_KEY}`;
+const getImageUrl = (roverName, sol, camera) =>`https://api.nasa.gov/mars-photos/api/v1/rovers/${roverName}/photos?sol=${sol}&camera=${camera}&api_key=${process.env.API_KEY}`;
 app.get('/rover', async (req, res) => {
     try {
         const roverName = req.query.rover_name.toLowerCase();
@@ -47,7 +47,9 @@ app.get('/rover', async (req, res) => {
             })
             .slice(0,5)
             .map(obj => {
-                return fetch(getImageUrl(roverName, obj.sol))
+                const url = getImageUrl(roverName, obj.sol, obj.cameras[0])
+
+                return fetch(url)
                         .then(res => res.json())
                         .then(obj => obj.photos)
             })
@@ -55,7 +57,6 @@ app.get('/rover', async (req, res) => {
         const latestImages = (await Promise.all(latestDatePhotoManifest)).flat();
         result.photo_manifest.photos = latestImages;
         res.json(result);
-
         // update db
         RoverDB.set(roverName, result);
     } catch (err) {
