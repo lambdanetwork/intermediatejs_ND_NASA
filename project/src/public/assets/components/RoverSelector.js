@@ -11,10 +11,10 @@ window.onRoverChange = function onRoverChange (e) {
     updateStore({roverSelected: roverName});
 }
 
-
 export const RoverSelector = (rovers,roverSelected) => {
     return `
     <section class='rover-selector'>
+        <label>Select Rover</label>
         <select onchange="onRoverChange(this)" id='rover_select'>
             ${rovers && rovers.map(roverName => 
                 `<option 

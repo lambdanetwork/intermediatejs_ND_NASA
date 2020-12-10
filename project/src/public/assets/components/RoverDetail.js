@@ -1,5 +1,9 @@
 export const RoverDetail = (rover) => {
-    if(!rover || !rover.name) return '';
+    if(!rover || !rover.name) return `
+        <section class='loading'>
+            Loading...
+        </section>
+    `;
     return `
     <section class='rover-detail'>
         <h3>Rover Detail</h3>
