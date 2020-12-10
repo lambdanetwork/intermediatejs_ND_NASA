@@ -12,9 +12,10 @@ app.use(bodyParser.json())
 
 app.use('/', express.static(path.join(__dirname, '../public')))
 
-// your API calls
 
-// example API call
+const { Map } = require('immutable');
+const RoverDB = Map({});
+
 app.get('/apod', async (req, res) => {
     try {
         let image = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`)
@@ -31,6 +32,12 @@ app.get('/rover', async (req, res) => {
         if(!roverName) {
             return res.status(400).end();
         }
+
+        const roverDetailDB = RoverDB.get(roverName);
+        if(roverDetailDB){
+            return res.json(roverDetailDB)
+        }
+
         const url = `https://api.nasa.gov/mars-photos/api/v1/manifests/${roverName}?api_key=${process.env.API_KEY}`;
         const imageUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/${roverName}/photos?sol=0&camera=fhaz&api_key=${process.env.API_KEY}`
         const result = await Promise.all(
@@ -41,6 +48,9 @@ app.get('/rover', async (req, res) => {
         const [roverDetail, images] = result;
         roverDetail.photo_manifest.photos = images.photos;
         res.json(roverDetail);
+
+        // update db
+        RoverDB.set(roverName);
     } catch (err) {
         console.log('error:', err);
         res.status(500).end();
