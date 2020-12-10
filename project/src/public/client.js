@@ -17,5 +17,4 @@ export const render = (root, state) => {
 window.addEventListener('load', () => {
     const store = getStore();
     render(root, store);
-
 })
