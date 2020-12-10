@@ -16,11 +16,11 @@
     flex:0;
 }
 .rover-detail div {
-    padding: 8px 16px;
-    font-size: 18px;
+    padding: 4px 8px;
+    font-size: 14px;
 }
 .rover-detail div label{
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .tile-container {

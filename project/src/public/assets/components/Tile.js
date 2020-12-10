@@ -4,8 +4,10 @@ import { getStore, updateStore } from "../../store/store.js";
 window.onRoverChange = function onRoverChange (e) {
     const store = getStore();
     const roverName = e.value;
-    if(!store.roverDetail[roverName] || 
-        !store.roverDetail[roverName].name){
+    const roverDetail = store.get('roverDetail').toJS();
+
+    if(!roverDetail[roverName] || 
+        !roverDetail[roverName].name){
             getImagesByRovername(roverName)
         }
     updateStore({roverSelected: roverName});
@@ -17,7 +19,12 @@ export const Tile = (photos) => {
     return `
         <section class="tile-container">
             ${photos.map(photo => {
-                return `<img class="tile" src="${photo.img_src}" alt="" />`
+                return `
+                <div class="tile">
+                    <img class="tile" src="${photo.img_src}" alt="" />
+                    <p style="text-align: center;">${photo.earth_date}</p>
+                </div>
+                `
             }).join("")}
         </section>
     `
