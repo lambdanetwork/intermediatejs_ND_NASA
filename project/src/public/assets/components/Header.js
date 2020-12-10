@@ -5,7 +5,7 @@ export const Header = () => {
     const {pageSelected} = store;
     return `
     <header>
-       <h3>${pageSelected}</h3>
+       <h3>${pageSelected.toUpperCase()}</h3>
     </header>
     `
 }

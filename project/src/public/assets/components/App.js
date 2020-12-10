@@ -8,6 +8,7 @@ import { RoverDetail } from './RoverDetail.js'
 import { RoverSelector } from './RoverSelector.js'
 import { Tile } from './Tile.js'
 import { Header } from './Header.js'
+import { Footer } from './Footer.js';
 
 // create content
 export const App = (state) => {
@@ -33,5 +34,7 @@ export const App = (state) => {
             : 
             Apod()
         }
+        ${Footer()}
+
     `
 }
