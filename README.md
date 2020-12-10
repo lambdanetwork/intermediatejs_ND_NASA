@@ -19,11 +19,16 @@ I decide on minimal design because design is not my strength. I wish to focus mo
 
 ### Technicalities
 1. Folder are broken into several section.
-    * Components    -> Functional component
-    * stylesheets   -> css 
-    * services      -> API request
-    * store         -> store logic which uses Immutable.js
-    * utils         -> utility functions
+    * public
+        * Components    -> Functional component
+        * stylesheets   -> css 
+        * services      -> API request
+        * store         -> store logic which uses Immutable.js
+        * utils         -> utility functions
+        * client.js
+        * index.html
+    * server
+        * index.js
 
 2. Try to mimic useEffect in React.Hook but implement it without VDOM.
     * dev can register name, function to be run, dependencies Array
