@@ -4,7 +4,7 @@ import { ImageOfTheDay } from "./ImageOfTheDay.js";
 
 export const Apod = () => {
     const store = getStore();
-    const apod = store.apod;
+    const apod = store.get('apod');
     return `
         <section class="main scrollable">
             <h3>Put things on the page!</h3>

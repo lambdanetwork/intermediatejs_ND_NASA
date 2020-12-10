@@ -1,4 +1,5 @@
-export const RoverDetail = (rover) => {
+export const RoverDetail = (_rover) => {
+    const rover = _rover.toJS();
     if(!rover || !rover.name) return `
         <section class='loading'>
             Loading...

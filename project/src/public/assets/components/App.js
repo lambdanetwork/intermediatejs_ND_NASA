@@ -11,16 +11,17 @@ import { Header } from './Header.js'
 import { Footer } from './Footer.js';
 
 // create content
-export const App = (state) => {
-    let { rovers } = state;
+export const App = () => {
     const store = getStore();
-    const {roverSelected, pageSelected} = store;
+    const rovers = store.get('rovers').toJS();
+    const roverSelected = store.get('roverSelected');
+    const pageSelected = store.get('pageSelected');
     
     useEffect('App', () => {
         getImagesByRovername(roverSelected);
     }, []);
 
-    const selectedRover =  store.roverDetail[roverSelected.toLowerCase()];
+    const selectedRover =  store.get('roverDetail').get(roverSelected.toLowerCase());
     return `
         ${Header()}
         ${(pageSelected === 'rover') ?
@@ -28,7 +29,7 @@ export const App = (state) => {
                 <div class='main'>
                     ${RoverSelector(rovers, roverSelected)}
                     ${RoverDetail(selectedRover)}
-                    ${Tile(selectedRover.photos)}
+                    ${Tile(selectedRover ? selectedRover.get('photos').toJS() : [])}
                 </div>
             `
             : 

@@ -3,7 +3,6 @@ import { getStore, updateStore } from "../../store/store.js";
 window.onFooterClick = function onRoverChange (e, pageSelected) {
     const store = getStore();
     if(store.pageSelected === pageSelected) return;
-    console.log(pageSelected)
     updateStore({ pageSelected });
 }
 

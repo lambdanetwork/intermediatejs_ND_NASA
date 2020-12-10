@@ -4,6 +4,8 @@ import { getStore, updateStore } from "../../store/store.js";
 window.onRoverChange = function onRoverChange (e) {
     const store = getStore();
     const roverName = e.value;
+    const roverDetail = store.get('roverDetail').get(roverName.toLowerCase());
+
     if(!store.roverDetail[roverName] || 
         !store.roverDetail[roverName].name){
             getImagesByRovername(roverName)

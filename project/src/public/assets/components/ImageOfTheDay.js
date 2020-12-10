@@ -4,20 +4,18 @@ import { useEffect } from '../../utils/useEffect.js';
 
 
 // Example of a pure function that renders infomation requested from the backend
-export const ImageOfTheDay = (apod) => {
-
+export const ImageOfTheDay = (_apod) => {
+    const apod = _apod ? _apod.toJS() : _apod;
     useEffect('ImageOfTheDay', () => {
         // mimic didmount, only run once
         // If image does not already exist, or it is not from today -- request it again
         const today = new Date()
-        const photodate = new Date(apod.date)    
         if (!apod || apod.date === today.getDate() ) {
-            return getImageOfTheDay(getStore())
+            return getImageOfTheDay()
         }
     }, [])
 
     if(!apod) return ''
-
     // check if the photo of the day is actually type video!
     if (apod.media_type === "video") {
         return (`
