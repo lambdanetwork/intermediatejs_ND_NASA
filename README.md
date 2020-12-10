@@ -20,11 +20,11 @@ I decide on minimal design because design is not my strength. I wish to focus mo
 ### Technicalities
 1. Folder are broken into several section.
     * public
-        * Components    -> Functional component
-        * stylesheets   -> css 
-        * services      -> API request
-        * store         -> store logic which uses Immutable.js
-        * utils         -> utility functions
+        * /Components    -> Functional component
+        * /stylesheets   -> css 
+        * /services      -> API request
+        * /store         -> store logic which uses Immutable.js
+        * /utils         -> utility functions
         * client.js
         * index.html
     * server
