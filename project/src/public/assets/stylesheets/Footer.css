@@ -1,0 +1,22 @@
+footer {
+    flex: 0 0 40px;
+    min-height: 40px;
+    border-top: 1px solid #ffba00;
+    display: flex;
+    align-items: center;
+}
+
+footer .footer-item {
+    padding: 5px;
+    width: 50%;
+    text-align: center;
+}
+
+.footer-item.selected {
+    color: #ffba00;
+}
+
+footer .footer-item:first-child {
+    border-right: 1px solid #ffba00;
+}
+

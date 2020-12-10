@@ -6,28 +6,48 @@ body {
   font-family: Arial;
   min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
+  color: #16181a;
 }
 
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-.main {
+.main.scrollable {
+  overflow-y: scroll !important;
+}
+
+#root{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+#root .main {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
   flex: 1;
+  overflow: hidden;
 }
-
 
 /* -------------------  TABLET  --------------------- */
 @media (min-width: 768px) {
   /* use mobile */
 }
 
-/* -------------------  DESKTOP  -------------------- */
+@media (min-width: 926px) {
 
-@media (min-width: 1224px) {
-  /* use mobile */
 }
 
-/* -------------------  LARGE SCREENS  -------------- */
+/* -------------------  DESKTOP  -------------------- */
 
-@media (min-width: 1824px) {
+@media (min-width: 1024px) {
   /* use mobile */
+  #root{
+    margin: 0 auto;
+    min-width: 1024px;
+    max-width: 1024px;
+  }
 }
